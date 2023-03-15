@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title> Countdown </title>
+		<link rel="stylesheet" href="countdown/index.css">
+	</head>
+	<body>
+		<div id="top">
+			<div id="pts">0pts</div>
+			<div id="clock">
+				<div id="clockhand"> </div>
+			</div>
+		</div>
+		<div id="mid">
+			
+			<div id="numbers">
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+			</div>
+			<div id="target"> </div>
+		</div>
+		<div id="bot">
+			<div id="add">
+				<button id="addrand"> Add RANDOM </button>
+				<button id="addbig"> Add BIG </button>
+				<button id="addsmall"> Add SMALL </button>
+			</div>
+			<div id="papercontainer">
+				<div id="paper">
+					<div> Countdown </div> <br>
+					<input type="text" id="input">
+					<div id="inputans"> </div>
+					<div id="inputerr"> </div>
+					<div id="inputwin"> </div>
+				</div>
+			</div>
+		</div>
+		<script async src="countdown/lib.js"> </script>
+		<script async src="countdown/game.js"> </script>
+		<script async src="countdown/evaltree.js"> </script>
+		<script defer async src="countdown/index.js"> </script>
+
+	</body>
+</html>
