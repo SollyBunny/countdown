@@ -1,3 +1,4 @@
+
 // Return whether n is a number or not
 function _isNumber(n) {
 	return !isNaN(Number(n));
@@ -102,7 +103,8 @@ function _parse(exp, i) {
 	
 	return [tokens[0], i, usednums];
 }
-function parse(exp) { // safe version of _parse to use externally
+
+export function parse(exp) { // safe version of _parse to use externally
 	try {
 		const out = _parse(exp, 0);
 		return [out[0], out[2]];

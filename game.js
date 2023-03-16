@@ -1,14 +1,19 @@
+
+// Import
+import { shallowCopy, sleep, randint, randchoice } from "./util.js"
+import { parse } from "./eval.js"
+
 // Init consts
 
 const NUMSBIG = [25, 50, 75, 100];
 const NUMSSMALL = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10];
 
-const BIG = 0;
-const SMALL = 1;
+export const BIG = 0;
+export const SMALL = 1;
 
 // Class
 
-class Game {
+export class Game {
 	constructor(els) {
 		/* Context on els
 			Order:
@@ -43,6 +48,7 @@ class Game {
 	}
 	reset() {
 		// Reset the current object
+		this.num = undefined;
 		this.nums = [];
 		this.numsbig = shallowCopy(NUMSBIG);
 		this.numssmall = shallowCopy(NUMSSMALL);
@@ -112,11 +118,12 @@ class Game {
 				err = "Too small";
 			} else if (out === this.target) {
 				win = "I got it!";
-				this.stop(out);
+				this.stop();
 			}
 
 		}
-	
+
+		this.num = out;
 		this.els[2].innerHTML = out;
 		this.els[3].innerHTML = err;
 		this.els[4].innerHTML = win;
@@ -207,12 +214,12 @@ class Game {
 		}
 		this.stop();
 	}
-	async stop(num) {
-		if (num === this.target) {
+	async stop() {
+		if (this.num === this.target) {
 			this.ptsadd(10);
-		} else if (Math.abs(num - this.target) <= 5) {
+		} else if (Math.abs(this.num - this.target) <= 5) {
 			this.ptsadd(7);
-		} else if (Math.abs(num - this.target) <= 10) {
+		} else if (Math.abs(this.num - this.target) <= 10) {
 			this.ptsadd(5);
 		}
 		this.running = false;

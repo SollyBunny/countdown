@@ -18,11 +18,13 @@
 }
 @font-face {
 	font-family: pencil;
-	src: url("/countdown/assets/pencil.ttf");
+	src: url("/countdown/assets/pencil.woff2");
+	font-display: swap;
 }
 @font-face {
 	font-family: futura;
-	src: url("/countdown/assets/futura.ttf");
+	src: url("/countdown/assets/futura.woff2");
+	font-display: swap;
 }
 #numbers > *, #target, #add button, #pts {
 	background: var(--game-mg);
@@ -39,7 +41,6 @@ body {
 	font-family: futura;
 	padding: 0;
 	margin: 0;
-	overflow: hidden;
 	background: radial-gradient(var(--game-bg) 60%, var(--game-mg));
 	background-size: cover;
 	color: var(--game-fg);
@@ -152,11 +153,13 @@ body {
 		overflow: visible;
 		position: relative;
 	}
-		#target:before {
+		#targetlabel {
 			display: inline-block;
+			line-height: 2.5em;
+			font-size: 150%;
+			
 			position: absolute;
-			content: "Target:";
-			left: -4em;
+			margin-left: -4em;
 		}
 	#add {
 		display: grid;
@@ -189,6 +192,7 @@ body {
 #bot {
 	flex-grow: 2;
 	position: relative;
+	overflow: hidden;
 }
 	#papercontainer {
 		width: 100%;

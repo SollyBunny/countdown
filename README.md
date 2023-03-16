@@ -89,6 +89,7 @@ Stores the current game data
 | --- | --- | --- | --- |
 | Big Numbers | `numsbig` | `[ 25, 50, 75, 100 ]` | The set of unused big numbers |
 | Small Numbers | `numssmall` | `[ 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10 ]` | The set of unused small numbers |
+| Number | `num` | undefined | The current guess by the player |
 | Numbers | `nums` | `[]` | The current set of numbers |
 | Target | `target` | `undefined` | The current target |
 | Elements | `els` | `undefined` | The (optional) set of elements to use to display / animate information for this object |
@@ -103,7 +104,7 @@ Stores the current game data
 | Add random numbers | `numsrand() => undefined` | Fill the rest of the available numbers and add to UI (if Elements is defined) |
 | New target | `targetnew() => Number` | Finds a new target and adds to UI (if Elements is defined) |
 | Start | `async start() => Promise(undefined)` | Starts a 30s clock and updates UI (if Elements is defined), called by New Target |
-| Stop | `async start(num: Number) => Promise(undefined)` | Ends the current game and adds points depending on the input num, and updates UI (if Elements is defined), called by Start |
+| Stop | `async start() => Promise(undefined)` | Ends the current game and adds points, and updates UI (if Elements is defined), called by Start |
 | Add Points | `async ptsadd(pts: Number) => Promise(undefined)` | Adds point and updates UI (if Elements is defined), called by Stop |
 ### UI
 

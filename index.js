@@ -1,4 +1,7 @@
 
+// Import
+import { Game } from "./game.js"
+
 let pts = 0;
 
 // Init game
