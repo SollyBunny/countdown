@@ -118,6 +118,7 @@ export class Game {
 				err = "Too small";
 			} else if (out === this.target) {
 				win = "I got it!";
+				this.num = out;
 				this.stop();
 			}
 
@@ -198,18 +199,16 @@ export class Game {
 	}
 	async start() {
 		this.running = true;
+		if (!this.target)
+			await this.targetnew(); // make sure there is a target
 		// Update UI
 		if (this.els) {
 			this.els[0].classList.add("running");
 			this.els[7].disabled = this.els[8].disabled = this.els[9].disabled = true;
-			if (!this.target)
-				await this.targetnew(); // make sure there is a target
 			await sleep(1);
 			this.els[1].focus(); // focus input after any animation is completed
 			await sleep(29);
 		} else {
-			if (!this.target)
-				await this.targetnew(); // make sure there is a target
 			await sleep(30);
 		}
 		this.stop();

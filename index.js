@@ -26,9 +26,9 @@ window.onresize = () => {
 	let w = e_clock.parentNode.clientWidth;
 	const h = e_clock.parentNode.clientHeight;
 	if (w > h) { // if aspect ratio > 1
-		w = `${h * 0.7}px`;
+		w = `${h * 0.9}px`;
 	} else {
-		w = `${w * 0.7}px`;
+		w = `${w * 0.9}px`;
 	}
 	e_clock.style.width = e_clock.style.height = w;
 };

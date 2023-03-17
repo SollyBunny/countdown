@@ -18,7 +18,52 @@
 		<div id="top">
 			<div id="pts">0pts</div>
 			<div id="clock">
-				<div id="clockhand"> </div>
+				<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+					<!-- 
+					Clock notches
+					Generated with the following python script
+					```py
+#!/usr/bin/env python3
+from math import *
+N = 12
+def rnd(n):
+	return int(n * 100) / 100
+a = [i / N * pi * 2 for i in range(N) if i % (N / 4) != 0]
+b = [
+	'<line x1="%s" y1="%s" x2="%s" y2="%s" />' % (
+		rnd(cos(i) * 40 + 50), rnd(sin(i) * 40 + 50), rnd(cos(i) * 30 + 50), rnd(sin(i) * 30 + 50)
+	) for i in a
+]
+print("\n".join(b))
+					```
+					-->
+					<!-- Major notches -->
+					<line x1="50" y1="50" x2="100" y2="50" />
+					<!-- Minor notches -->
+					<line x1="84.64" y1="70.0" x2="75.98" y2="65.0" />
+					<line x1="70.0" y1="84.64" x2="65.0" y2="75.98" />
+					<line x1="70.0" y1="15.35" x2="65.0" y2="24.01" />
+					<line x1="84.64" y1="29.99" x2="75.98" y2="34.99" />
+				</svg>
+				<svg id="clockhand" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+					<path d= "M 50 100 A 50 50 0 0 1 50 0" style="fill: var(--clock-hl)" />
+					<line x1="50" y1="0" x2="50" y2=50 style="stroke: var(--clock-hand); stroke-width: 4" />
+				</svg>
+				<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+					<path d= "M 50 100 A 50 50 0 0 1 50 0" style="fill: var(--clock-bg)" />
+					<!-- Major notches -->
+					<line x1="0" y1="50" x2="50" y2="50" />
+					<line x1="50" y1="0" x2="50" y2="100" />
+					<!-- Minor notches -->
+					<line x1="30.0" y1="84.64" x2="35.0" y2="75.98" />
+					<line x1="15.35" y1="70.0" x2="24.01" y2="65.0" />
+					<line x1="15.35" y1="29.99" x2="24.01" y2="35.0" />
+					<line x1="29.99" y1="15.35" x2="34.99" y2="24.01" />
+					<!-- Border  -->
+					<circle cx="50" cy="50" r="48" style="stroke: var(--clock-mg); fill: none; stroke-width: 4" />
+					<!-- Middle dot -->
+					<circle cx="50" cy="50" r="5" />
+				</svg>
 			</div>
 		</div>
 		<div id="mid">
@@ -52,6 +97,5 @@
 			</div>
 		</div>
 		<script defer async type="module" src="countdown/index.js"> </script>
-
 	</body>
 </html>
