@@ -29,6 +29,7 @@
 #numbers > *, #target, #add button, #pts {
 	background: var(--game-mg);
 	height: 2.5em;
+	min-height: 2.5em;
 	line-height: 2.5em;
 	font-size: 150%;
 	border: none;

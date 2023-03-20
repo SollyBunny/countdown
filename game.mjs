@@ -1,7 +1,7 @@
 
 // Import
-import { shallowCopy, sleep, randint, randchoice } from "./util.js"
-import { parse } from "./eval.js"
+import { shallowCopy, sleep, randint, randchoice } from "./util.mjs"
+import { parse } from "./eval.mjs"
 
 // Init consts
 
@@ -79,6 +79,8 @@ export class Game {
 			i.classList.remove("used"); // remove used
 		});
 
+		const sel = event.target.selectionStart; 
+
 		let out = "";
 		let err = "";
 		let win = "";
@@ -104,10 +106,11 @@ export class Game {
 
 			// Figure out responce
 			out = out[0];
-			if (err) { // if err is set don't do anything
-
-			} else if (isNaN(out)) {
+			if (isNaN(out)) {
 				out = "";
+			} else if (out === Infinity) {
+				out = "∞";
+				if (!err) err = "Oopsies!"
 			} else if (!Number.isInteger(out)) {
 				err = "Not a round number";
 			} else if (out < 0) {
@@ -121,13 +124,14 @@ export class Game {
 				this.num = out;
 				this.stop();
 			}
-
 		}
 
 		this.num = out;
 		this.els[2].innerHTML = out;
 		this.els[3].innerHTML = err;
 		this.els[4].innerHTML = win;
+
+		event.target.selectionEnd = event.target.selectionStart = sel;
 	}
 	numsadd(type) {
 		// Add number

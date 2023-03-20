@@ -1,6 +1,6 @@
 
 // Import
-import { Game } from "./game.js"
+import { Game } from "./game.mjs"
 
 let pts = 0;
 
