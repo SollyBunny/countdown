@@ -111,6 +111,8 @@ export class Game {
 			} else if (out === Infinity) {
 				out = "∞";
 				if (!err) err = "Oopsies!"
+			} else if (err !== "") {
+				
 			} else if (!Number.isInteger(out)) {
 				err = "Not a round number";
 			} else if (out < 0) {
