@@ -34,7 +34,6 @@ export class Game {
 				The class attribute "running" will be added when the game is in said state
 				Elements in numbers will get "used" classes
 		*/
-		
 		this.els = els;
 		if (this.els) {
 			this.els[1].oninput = this.handleinput.bind(this); // add input handler to input (bind is used so this is set correctly)
@@ -44,9 +43,11 @@ export class Game {
 			this.els[9].onclick = () => { this.numsrand() };
 		}
 		this.pts = 0;
+		this.timeout = undefined;
 		this.reset();
 	}
 	reset() {
+		clearTimeout(this.timeout);
 		// Reset the current object
 		this.num = undefined;
 		this.nums = [];
@@ -73,7 +74,7 @@ export class Game {
 				this.els[1].value = ""; // remove any input
 			return;
 		}
-	
+
 		const nums = shallowCopy(this.els[5]);
 		nums.forEach(i => {
 			i.classList.remove("used"); // remove used
@@ -84,7 +85,7 @@ export class Game {
 		let out = "";
 		let err = "";
 		let win = "";
-	
+
 		if (event.target.value.length !== 0) {
 			// Sanitize user input
 			event.target.value = event.target.value.replaceAll("/", "÷");
@@ -112,7 +113,7 @@ export class Game {
 				out = "∞";
 				if (!err) err = "Oopsies!"
 			} else if (err !== "") {
-				
+
 			} else if (!Number.isInteger(out)) {
 				err = "Not a round number";
 			} else if (out < 0) {
@@ -204,7 +205,9 @@ export class Game {
 		return d;
 	}
 	async start() {
+		clearTimeout(this.timeout);
 		this.running = true;
+		this.timeout = setTimeout(stop, 30 * 1000);
 		if (!this.target)
 			await this.targetnew(); // make sure there is a target
 		// Update UI
@@ -213,13 +216,10 @@ export class Game {
 			this.els[7].disabled = this.els[8].disabled = this.els[9].disabled = true;
 			await sleep(1);
 			this.els[1].focus(); // focus input after any animation is completed
-			await sleep(29);
-		} else {
-			await sleep(30);
 		}
-		this.stop();
 	}
 	async stop() {
+		clearTimeout(this.timeout);
 		if (this.num === this.target) {
 			this.ptsadd(10);
 		} else if (Math.abs(this.num - this.target) <= 5) {
